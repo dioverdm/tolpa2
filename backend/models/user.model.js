@@ -14,9 +14,10 @@ const userSchema = new mongoose.Schema({
         unique: true,
         required: [true, "Please Enter your name"],
     },
-    // about: {
-    //     type: String,
-    // },
+    about: {
+        type: String,
+    },
+    contacts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
     // avatar: {
     //     type: String,
     // },

@@ -6,7 +6,8 @@ import cookieParser from "cookie-parser";
 
 // Routes
 import authRoutes from "./routes/auth.routes.js";
-import messageRoutes from "./routes/message.routes.js"
+import messageRoutes from "./routes/message.routes.js";
+import contactRoutes from "./routes/user.routes.js"
 
 dotenv.config();
 
@@ -22,6 +23,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/auth", authRoutes);
 app.use("/api/message", messageRoutes);
+app.use("/api/user", contactRoutes);
 app.use(ErrorMiddleware);
 
 app.listen(PORT, () => {
