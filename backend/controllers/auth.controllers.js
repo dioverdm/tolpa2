@@ -1,7 +1,7 @@
 import User from "../models/user.model.js";
 import bcrypt from 'bcryptjs';
 import catchAsyncErrors from "../middleware/catchAsyncErrors.js"
-import { sendToken } from "../utils/jwtToken.js";
+import sendToken from "../utils/jwtToken.js";
 import ErrorHandler from "../utils/errorHandler.js";
 
 export const registerUser = catchAsyncErrors(async (req, res, next) => {

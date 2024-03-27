@@ -1,9 +1,9 @@
 import ErrorHandler from "../utils/errorHandler.js";
 import catchAsyncErrors from "./catchAsyncErrors.js";
-import jwt from "../utils/jwtToken.js"
+import jwt from "jsonwebtoken"
 import User from "../models/user.model.js"
 
-exports.isAuthenticatedUser = catchAsyncErrors(async (req, res, next) => {
+export const isAuthenticatedUser = catchAsyncErrors(async (req, res, next) => {
     const token = req.cookies.token;
     if (!token) {
         return next(new ErrorHandler("Please login to access this resource", 401))
@@ -15,7 +15,7 @@ exports.isAuthenticatedUser = catchAsyncErrors(async (req, res, next) => {
     next();
 })
 
-exports.authorizeRole = (...roles) => {
+export const authorizeRole = (...roles) => {
     return (req, res, next) => {
         if (!roles.includes(req.user.role)) {
             return next(new ErrorHandler(

@@ -1,5 +1,5 @@
 // creating token and saving in cookie
-export const sendToken = (user, statusCode, res) => {
+const sendToken = (user, statusCode, res) => {
     const token = user.getJWTToken();
 
     // options for cookie
@@ -16,3 +16,4 @@ export const sendToken = (user, statusCode, res) => {
         token,
     })
 }
+export default sendToken;
