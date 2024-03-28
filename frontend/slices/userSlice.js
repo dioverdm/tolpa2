@@ -15,6 +15,7 @@ const userSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
+            // AuthSlices
             .addCase(registerUser.pending, (state) => {
                 state.loading = true;
                 state.error = null;
@@ -39,6 +40,35 @@ const userSlice = createSlice({
             .addCase(loginUser.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
+            })
+            .addCase(logoutUser.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(logoutUser.fulfilled, (state) => {
+                state.isAuthenticated = false;
+                state.loading = false;
+                state.user = null;
+            })
+            .addCase(logoutUser.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            })
+
+            //UserSclices 
+            .addCase(loadUser.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(loadUser.fulfilled, (state, action) => {
+                state.isAuthenticated = true;
+                state.loading = false;
+                state.user = action.payload;
+
+            })
+            .addCase(loadUser.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
             });
     },
 });
@@ -56,6 +86,24 @@ export const loginUser = createAsyncThunk("user/login", async (userData) => {
     try {
         const response = await axios.post("/api/auth/login", userData);
         return response.data.user;
+    } catch (error) {
+        throw error.response.data;
+    }
+});
+
+export const logoutUser = createAsyncThunk("user/logout", async () => {
+    try {
+        const response = await axios.post("/api/auth/logout");
+        return response.data.user;
+    } catch (error) {
+        throw error.response.data;
+    }
+});
+
+export const loadUser = createAsyncThunk("user/me", async () => {
+    try {
+        const response = await axios.get("/api/user/me");
+        return response.data;
     } catch (error) {
         throw error.response.data;
     }

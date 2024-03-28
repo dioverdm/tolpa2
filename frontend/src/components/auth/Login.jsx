@@ -1,10 +1,12 @@
-import { useState } from "react";
-import { loginUser } from "../../slices/authSlice";
-import { useDispatch } from 'react-redux'
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { loginUser } from "../../../slices/userSlice";
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const { isAuthenticated } = useSelector((state) => state.user);
     const [user, setUser] = useState({
         username: "",
         password: "",
@@ -17,8 +19,16 @@ function Login() {
     const handelSubmit = (e) => {
         e.preventDefault();
         console.log(user);
-        dispatch(loginUser(user));
+        dispatch(loginUser(user)).then(() => {
+            navigate("/")
+        })
     }
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            navigate("/")
+        }
+    })
 
     return (
         <div className="h-screen w-screen flex justify-center gap-2 flex-col items-center">

@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { registerUser } from "../../slices/authSlice";
+import { registerUser } from "../../../slices/userSlice";
 import { useDispatch } from 'react-redux'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Register() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [user, setUser] = useState({
         name: "",
         username: "",
@@ -18,8 +19,9 @@ function Register() {
 
     const handelSubmit = (e) => {
         e.preventDefault();
-        console.log(user);
-        dispatch(registerUser(user));
+        dispatch(registerUser(user)).then(() => {
+            navigate("/");
+        })
     }
 
     return (
