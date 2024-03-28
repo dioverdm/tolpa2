@@ -6,6 +6,7 @@ const initialState = {
     isAuthenticated: false,
     loading: false,
     error: null,
+    contactList: []
 };
 
 const userSlice = createSlice({
@@ -69,6 +70,19 @@ const userSlice = createSlice({
             .addCase(loadUser.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
+            })
+            .addCase(getContactList.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(getContactList.fulfilled, (state, action) => {
+                state.loading = false;
+                state.contactList = action.payload;
+
+            })
+            .addCase(getContactList.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
             });
     },
 });
@@ -108,6 +122,15 @@ export const loadUser = createAsyncThunk("user/me", async () => {
         throw error.response.data;
     }
 });
+
+export const getContactList = createAsyncThunk("user/constList", async () => {
+    try {
+        const response = await axios.get("/api/user/contacts");
+        return response.data;
+    } catch (error) {
+        throw error.response.data;
+    }
+})
 
 export const { setAuthenticated } = userSlice.actions;
 

@@ -5,3 +5,11 @@
 * {
     font-family: sans-serif;
 }
+
+.icon-container {
+    transition: transform 0.5s ease-in-out;
+}
+
+.rotate {
+    transform: rotate(180deg);
+}
