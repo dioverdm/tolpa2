@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState = {
+    chatWith: null,
     conversation: [],
     loading: false,
     error: null,
@@ -11,6 +12,9 @@ const chatSlice = createSlice({
     name: "chat",
     initialState,
     reducers: {
+        setChatWith(state, action) {
+            state.chatWith = action.payload;
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -20,7 +24,6 @@ const chatSlice = createSlice({
             })
             .addCase(sendMessage.fulfilled, (state, action) => {
                 state.loading = false;
-                state.conversation = action.payload;
             })
             .addCase(sendMessage.rejected, (state, action) => {
                 state.loading = false;
@@ -41,25 +44,32 @@ const chatSlice = createSlice({
     },
 });
 
-export const sendMessage = createAsyncThunk('conversation/sendMessage', async ({ message, id }) => {
-    try {
-        console.log
-        const response = await axios.post(`/api/message/send/66043cce7120740c248782ab`, { message });
-        return response.data;
-    } catch (error) {
-        return rejectWithValue(error.response.data);
+export const sendMessage = createAsyncThunk(
+    'chat/sendMessage',
+    async ({ message, id }, { dispatch }) => {
+        try {
+            const response = await axios.post(`/api/message/send/${id}`, { message });
+            dispatch(getConversation(id));
+            return response.data;
+        } catch (error) {
+            throw error.response.data;
+        }
     }
-}
 );
-export const getConversation = createAsyncThunk('conversation/getConversation', async (id) => {
-    try {
-        console.log("this is id" + id);
-        const response = await axios.get(`/api/message/${id}`);
-        console.log(response.data)
-        return response.data;
-    } catch (error) {
-        throw error.response.data;
+
+export const getConversation = createAsyncThunk(
+    'chat/getConversation',
+    async (id) => {
+        try {
+            const response = await axios.get(`/api/message/${id}`);
+            return response.data;
+        } catch (error) {
+            throw error.response.data;
+        }
     }
-})
+);
+
+
+export const { setChatWith } = chatSlice.actions;
 
 export default chatSlice.reducer;

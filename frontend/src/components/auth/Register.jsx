@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { registerUser } from "../../../slices/userSlice";
+import { registerUser } from "../../slices/userSlice";
 import { useDispatch } from 'react-redux'
 import { Link, useNavigate } from "react-router-dom";
 

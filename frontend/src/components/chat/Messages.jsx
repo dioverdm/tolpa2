@@ -14,7 +14,7 @@ function Messages() {
     }, [conversation]);
 
     return (
-        <div className='px-4 flex-1 overflow-auto'>
+        <div className='p-4 flex-1 overflow-auto'>
             {!loading &&
                 conversation.length > 0 &&
                 conversation.map((message) => (
@@ -25,7 +25,7 @@ function Messages() {
 
             {loading && [...Array(3)].map((_, idx) => <MessageSkeleton key={idx} />)}
             {!loading && conversation.length === 0 && (
-                <p className='text-center'>Send a message to start the conversation</p>
+                <p className='text-center pt-5'>Send a message to start the conversation</p>
             )}
         </div>
     );

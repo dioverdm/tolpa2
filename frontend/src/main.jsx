@@ -5,7 +5,7 @@ import './index.css'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from './store/store.js';
-import { loadUser } from '../slices/userSlice.js';
+import { loadUser } from './slices/userSlice.js';
 
 const root = createRoot(document.getElementById('root'));
 store.dispatch(loadUser());

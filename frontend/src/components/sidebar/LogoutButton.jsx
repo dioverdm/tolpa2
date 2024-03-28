@@ -1,5 +1,5 @@
 import { BiLogOut } from "react-icons/bi";
-import { logoutUser } from "../../../slices/userSlice";
+import { logoutUser } from "../../slices/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const LogoutButton = () => {

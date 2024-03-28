@@ -2,17 +2,18 @@ import { FaMicrophone } from "react-icons/fa";
 import { BsEmojiSmile } from "react-icons/bs";
 import { IoMdAdd, IoMdSend } from "react-icons/io";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { sendMessage } from "../../../slices/chatSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { sendMessage } from "../../slices/chatSlice";
 
 
 function SendMessage() {
     const dispatch = useDispatch();
+    const { chatWith } = useSelector((state) => state.chat);
+
     const [message, setMessage] = useState("");
-    const id = 8;
     const handelSubmit = (e) => {
         e.preventDefault();
-        dispatch(sendMessage({ message, id }));
+        dispatch(sendMessage({ message, id: chatWith }));
         setMessage("");
     }
 
