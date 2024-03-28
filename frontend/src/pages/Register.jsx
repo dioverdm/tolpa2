@@ -1,13 +1,15 @@
 import { useState } from "react";
-import { loginUser } from "../../slices/authSlice";
+import { registerUser } from "../../slices/authSlice";
 import { useDispatch } from 'react-redux'
 import { Link } from "react-router-dom";
 
-function Login() {
+function Register() {
     const dispatch = useDispatch();
     const [user, setUser] = useState({
+        name: "",
         username: "",
         password: "",
+        confirmPassword: ""
     });
 
     const handelInputChange = (e) => {
@@ -17,13 +19,24 @@ function Login() {
     const handelSubmit = (e) => {
         e.preventDefault();
         console.log(user);
-        dispatch(loginUser(user));
+        dispatch(registerUser(user));
     }
 
     return (
         <div className="h-screen w-screen flex justify-center gap-2 flex-col items-center">
             <h1 className="text-3xl font-bold">Welcome to BuzzHive</h1>
             <form onSubmit={handelSubmit} className="flex flex-col gap-2 p-10 rounded bg-white bg-opacity-10 ">
+                <label className="input input-bordered flex items-center gap-2">
+                    <input
+                        type="text"
+                        name="name"
+                        required
+                        onChange={handelInputChange}
+                        value={user.name}
+                        className="grow"
+                        placeholder="Name"
+                    />
+                </label>
                 <label className="input input-bordered flex items-center gap-2">
                     <input
                         type="text"
@@ -46,11 +59,22 @@ function Login() {
                         placeholder="Password"
                     />
                 </label>
-                <p className="text-xs text-right">New user? <Link to="/register"><span className="underline">Signup</span></Link></p>
-                <input type="submit" value="Login" className="btn" />
+                <label className="input input-bordered flex items-center gap-2">
+                    <input
+                        type="password"
+                        name="confirmPassword"
+                        required
+                        onChange={handelInputChange}
+                        value={user.confirmPassword}
+                        className="grow"
+                        placeholder="Confirm Password"
+                    />
+                </label>
+                <p className="text-xs text-right" >Already a user?<Link to="/login"><span className="underline">Login</span></Link></p>
+                <input type="submit" value="Submit" className="btn" />
             </form>
         </div>
     );
 }
 
-export default Login;
+export default Register;

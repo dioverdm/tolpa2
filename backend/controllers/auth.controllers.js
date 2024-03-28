@@ -5,6 +5,8 @@ import sendToken from "../utils/jwtToken.js";
 import ErrorHandler from "../utils/errorHandler.js";
 
 export const registerUser = catchAsyncErrors(async (req, res, next) => {
+    console.log("hello")
+    console.log(req.body);
     const { name, username, password, confirmPassword } = req.body;
 
     if (password !== confirmPassword) {
@@ -31,6 +33,7 @@ export const registerUser = catchAsyncErrors(async (req, res, next) => {
 
 export const loginUser = catchAsyncErrors(async (req, res, next) => {
     const { username, password } = req.body;
+    console.log(req.body);
 
     // checking if user has given password and email both
     if (!username || !password) {
