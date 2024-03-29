@@ -9,10 +9,10 @@ function ContactList() {
     const { contactList } = useSelector((state) => state.user);
     const [selectedContactId, setSelectedContactId] = useState(null);
 
-    const handleChatWith = (id) => {
-        setSelectedContactId(id);
-        dispatch(setChatWith(id));
-        dispatch(getConversation(id));
+    const handleChatWith = (contact) => {
+        setSelectedContactId(contact.id);
+        dispatch(setChatWith(contact));
+        dispatch(getConversation(contact.id));
     }
 
     useEffect(() => {

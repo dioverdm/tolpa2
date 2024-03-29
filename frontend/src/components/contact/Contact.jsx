@@ -1,7 +1,7 @@
 function Contact({ contact, handleChatWith, isSelected }) {
     return (
         <div
-            onClick={() => handleChatWith(contact.id)}
+            onClick={() => handleChatWith(contact)}
             className={`py-4 px-2 border-b flex gap-5 items-center border-border cursor-pointer ${isSelected ? 'bg-select' : ''}`}
         >
             <div className="avatar online">

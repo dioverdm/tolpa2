@@ -4,10 +4,10 @@ import SendMessage from "./SendMessage";
 import { io } from "socket.io-client";
 import { useDispatch, useSelector } from "react-redux";
 import { addMessage } from "../../slices/chatSlice";
+import Messages from "./Messages"
 import BlankChat from "./BlankChat";
-import Message from "./Message";
 
-function ChatSection() {
+function ChatSection({ setIsContactInfoHidden }) {
 
     const dispatch = useDispatch();
     const { user } = useSelector((state) => state.user);
@@ -36,10 +36,10 @@ function ChatSection() {
         <>
             {chatWith ? <div div className="flex h-full flex-col">
                 <div>
-                    <ChatSectionHeader />
+                    <ChatSectionHeader setIsContactInfoHidden={setIsContactInfoHidden} chatWith={chatWith} />
                 </div>
                 <div className="flex-1 overflow-y-auto">
-                    <Message />
+                    <Messages />
                 </div>
                 <div>
                     <SendMessage />
