@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { registerUser } from "../../slices/userSlice";
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from "react-router-dom";
 
 function Register() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const { isAuthenticated } = useSelector((state) => state.user);
     const [user, setUser] = useState({
         name: "",
         username: "",
@@ -23,6 +24,12 @@ function Register() {
             navigate("/");
         })
     }
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            navigate("/")
+        }
+    }, [isAuthenticated, navigate])
 
     return (
         <div className="h-screen w-screen flex justify-center gap-2 flex-col items-center">

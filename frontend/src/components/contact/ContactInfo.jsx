@@ -24,7 +24,7 @@ function ConatctInfo({ setIsContactInfoHidden }) {
                 <div className="p-4 border-b-8 pb-5 border-secondary">
                     <p className="text-on-primary">About</p>
                     <p className="text-white ">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam ratione inventore similique culpa quidem unde, sequi dolorum fuga ea molestias!
+                        {chatWith?.about}
                     </p>
                 </div>
 

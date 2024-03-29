@@ -6,13 +6,14 @@ import Contact from './Contact';
 
 function ContactList() {
     const dispatch = useDispatch();
-    const { contactList } = useSelector((state) => state.user);
+    const { contactList, searchedUser } = useSelector((state) => state.user);
+    const { searchInput } = useSelector((state) => state.util);
     const [selectedContactId, setSelectedContactId] = useState(null);
 
     const handleChatWith = (contact) => {
-        setSelectedContactId(contact.id);
+        setSelectedContactId(contact._id);
         dispatch(setChatWith(contact));
-        dispatch(getConversation(contact.id));
+        dispatch(getConversation(contact._id));
     }
 
     useEffect(() => {
@@ -23,16 +24,34 @@ function ContactList() {
         <>
             <div className='py-2'>
                 {
-                    contactList.map((contact) => (
-                        <Contact
-                            key={contact.id}
-                            contact={contact}
-                            isSelected={contact.id === selectedContactId}
-                            handleChatWith={handleChatWith}
-                        />
-                    ))
+                    (searchInput !== "") ? (
+                        searchedUser.length !== 0 ? (
+                            searchedUser.map((contact) => (
+                                <Contact
+                                    key={contact._id}
+                                    contact={contact}
+                                    isSelected={contact._id === selectedContactId}
+                                    handleChatWith={handleChatWith}
+                                />
+                            ))
+                        ) : (
+                            <div className='flex justify-center'>
+                                <p>NO USER FOUND</p>
+                            </div>
+                        )
+                    ) : (
+                        contactList.map((contact) => (
+                            <Contact
+                                key={contact._id}
+                                contact={contact}
+                                isSelected={contact._id === selectedContactId}
+                                handleChatWith={handleChatWith}
+                            />
+                        ))
+                    )
                 }
             </div>
+
         </>
     );
 }

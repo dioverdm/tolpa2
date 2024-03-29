@@ -1,9 +1,11 @@
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { useSelector } from "react-redux";
-import { MdEdit } from "react-icons/md";
+import EditableField from "./EditableField";
 
 function Profile({ setIsProfileSelected }) {
     const { user } = useSelector((state) => state.user);
+    const { name, username, about } = user;
+
     return (
         <>
             <div className="h-28 flex pl-4 pb-5  text-on-primary bg-primary items-end">
@@ -15,45 +17,13 @@ function Profile({ setIsProfileSelected }) {
             <div>
                 <div className="avatar w-full">
                     <div className="w-40 mx-auto my-10 rounded-full">
-                        <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                        <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" alt="user avatar" />
                     </div>
                 </div>
-                <div className="flex flex-col gap-2 p-2 ">
-
-                    <div>
-                        <div className="flex justify-between">
-                            <p className=" text-notify font-thin">
-                                Your name
-                            </p>
-                            <MdEdit />
-                        </div>
-                        <p>
-                            {user.name}
-                        </p>
-                    </div>
-
-                    <div>
-                        <div className="flex justify-between">
-                            <p className="text-notify font-thin">
-                                Your username
-                            </p>
-                            <MdEdit />
-                        </div>
-                        <p>
-                            {user.username}
-                        </p>
-                    </div>
-
-                    <div>
-                        <div className="flex justify-between">
-                            <p className="text-notify font-thin">
-                                About
-                            </p>
-                            <MdEdit />
-                        </div>
-                        {/* Add content for 'About' section if needed */}
-                    </div>
-
+                <div className="flex flex-col gap-4 p-5 ">
+                    <EditableField label="Your name" value={name} />
+                    <EditableField label="User name" value={username} />
+                    <EditableField label="About" value={about} />
                 </div>
 
             </div>

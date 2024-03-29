@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoSearchSharp } from "react-icons/io5";
 import { IoMdArrowRoundBack } from "react-icons/io";
+import { useDispatch } from "react-redux";
+import { searchUser } from "../../slices/userSlice";
+import { setSearchInput } from "../../slices/utilSlice";
 
 const SearchInput = () => {
+	const dispatch = useDispatch();
 	const [search, setSearch] = useState("");
 	const [isFocused, setIsFocused] = useState(false);
 	const [isSearchIconRotated, setIsSearchIconRotated] = useState(false);
@@ -19,8 +23,14 @@ const SearchInput = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		// Handle form submission if needed
 	};
+
+	useEffect(() => {
+		dispatch(setSearchInput(search));
+		if (search.trim() !== '') {
+			dispatch(searchUser(search));
+		}
+	}, [search, dispatch]);
 
 	return (
 		<form onSubmit={handleSubmit} className="flex items-center p-2">
@@ -34,7 +44,7 @@ const SearchInput = () => {
 				</div>
 				<input
 					type="text"
-					placeholder="Search or start new chat"
+					placeholder={`${isFocused ? `` : "Search or start new chat"}`}
 					className="outline-none bg-primary text-xs h-8 rounded-md"
 					value={search}
 					onFocus={handleFocus}

@@ -1,7 +1,5 @@
-import { useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { IoSearchSharp } from "react-icons/io5";
-import ConatctInfo from "../contact/ContactInfo";
 
 function ChatSectionHeader({ chatWith, setIsContactInfoHidden }) {
 

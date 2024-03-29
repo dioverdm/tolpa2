@@ -13,7 +13,7 @@ function SendMessage() {
     const [message, setMessage] = useState("");
     const handelSubmit = (e) => {
         e.preventDefault();
-        dispatch(sendMessage({ message, id: chatWith.id }));
+        dispatch(sendMessage({ message, id: chatWith._id }));
         setMessage("");
     }
 
