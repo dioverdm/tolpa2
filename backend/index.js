@@ -9,11 +9,10 @@ import authRoutes from "./routes/auth.routes.js";
 import messageRoutes from "./routes/message.routes.js";
 import contactRoutes from "./routes/user.routes.js"
 
-dotenv.config();
-
-const app = express();
+import { app, server } from "./socket/socket.js";
 const PORT = process.env.PORT || 5000;
 
+dotenv.config();
 app.use(express.json());
 app.use(cookieParser());
 
@@ -26,7 +25,7 @@ app.use("/api/message", messageRoutes);
 app.use("/api/user", contactRoutes);
 app.use(ErrorMiddleware);
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     console.log(`Server is running at PORT: ${PORT}`);
     connectDB();
 });

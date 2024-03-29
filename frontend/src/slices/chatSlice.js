@@ -15,6 +15,9 @@ const chatSlice = createSlice({
         setChatWith(state, action) {
             state.chatWith = action.payload;
         },
+        addMessage(state, action) {
+            state.conversation.push(action.payload); // Append new message to conversation
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -70,6 +73,6 @@ export const getConversation = createAsyncThunk(
 );
 
 
-export const { setChatWith } = chatSlice.actions;
+export const { setChatWith, addMessage } = chatSlice.actions;
 
 export default chatSlice.reducer;
