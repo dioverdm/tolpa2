@@ -127,6 +127,15 @@ export const logoutUser = createAsyncThunk("user/logout", async () => {
     }
 });
 
+export const updateProfile = createAsyncThunk("user/updateprofile", async (userData) => {
+    try {
+        const response = await axios.post("/api/user/update/profile", userData);
+        return response.data.user;
+    } catch (error) {
+        throw error.response.data;
+    }
+})
+
 export const loadUser = createAsyncThunk("user/me", async () => {
     try {
         const response = await axios.get("/api/user/me");

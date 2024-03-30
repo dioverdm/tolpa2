@@ -1,7 +1,11 @@
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { IoSearchSharp } from "react-icons/io5";
+import { useSocketContext } from "../../context/socketContext";
 
 function ChatSectionHeader({ chatWith, setIsContactInfoHidden }) {
+
+    const { onlineUsers } = useSocketContext();
+    const isOnline = onlineUsers.includes(chatWith._id);
 
     return (
         <>
@@ -13,9 +17,14 @@ function ChatSectionHeader({ chatWith, setIsContactInfoHidden }) {
                             <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
                         </div>
                     </div>
-                    <p className="text-white font-bold">
-                        {chatWith.name}
-                    </p>
+                    <div>
+                        <p className="text-white font-bold">
+                            {chatWith.name}
+                        </p>
+                        <p className="text-xs">
+                            {isOnline ? `Online` : `Offline`}
+                        </p>
+                    </div>
                 </div>
                 <div className="flex gap-4 items-center">
                     <IoSearchSharp className="text-xl text-on-primary" />

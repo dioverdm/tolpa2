@@ -40,3 +40,11 @@ export const searchUser = catchAsyncErrors(async (req, res, next) => {
     const users = await User.find({ username: { $regex: username, $options: 'i' } });
     res.status(200).json(users);
 })
+
+export const updateProfile = catchAsyncErrors(async (req, res, next) => {
+    const { name, about } = req.body;
+    const userId = req.user._id;
+
+    const user = await User.findByIdAndUpdate(userId, { name, about });
+    res.status(200).json({ success: true, user });
+});

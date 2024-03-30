@@ -1,36 +1,30 @@
 import { useEffect } from "react";
 import ChatSectionHeader from "./ChatSectionHeader";
 import SendMessage from "./SendMessage";
-import { io } from "socket.io-client";
 import { useDispatch, useSelector } from "react-redux";
 import { addMessage } from "../../slices/chatSlice";
 import Messages from "./Messages"
 import BlankChat from "./BlankChat";
+import { useSocketContext } from "../../context/socketContext";
 
 function ChatSection({ setIsContactInfoHidden }) {
 
     const dispatch = useDispatch();
-    const { user } = useSelector((state) => state.user);
     const { chatWith } = useSelector((state) => state.chat);
+    const { socket } = useSocketContext();
 
-    const userId = user._id;
     useEffect(() => {
     }, [chatWith]);
 
     useEffect(() => {
-        const socket = io('http://localhost:5000', {
-            query: {
-                userId: userId
-            }
-        });
         socket.on("newMessage", (newMessage) => {
             dispatch(addMessage(newMessage));
         });
 
         return () => {
-            socket.disconnect();
+            socket.off("newMessage");
         };
-    }, [userId, dispatch]);
+    }, [socket, dispatch]);
 
     return (
         <>
