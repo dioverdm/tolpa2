@@ -28,7 +28,9 @@ export const getContactList = catchAsyncErrors(async (req, res, next) => {
             _id: contact._id,
             username: contact.username,
             name: contact.name,
+            profilePic: contact.profilePic,
             about: contact.about,
+            lastseen: contact.lastseen,
         };
     });
 
@@ -48,3 +50,12 @@ export const updateProfile = catchAsyncErrors(async (req, res, next) => {
     const user = await User.findByIdAndUpdate(userId, { name, about });
     res.status(200).json({ success: true, user });
 });
+
+// export const updateLastSeen = catchAsyncErrors(async (req, res, next) => {
+//     const userId = req.user._id;
+//     const updatedUser = await User.findByIdAndUpdate(userId, { lastseen: new Date() }, { new: true });
+//     if (!updatedUser) {
+//         return next(new ErrorHandler('User not found', 404));
+//     }
+//     res.status(200).json({ success: true, user: updatedUser });
+// });

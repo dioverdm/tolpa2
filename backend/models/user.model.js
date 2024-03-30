@@ -14,17 +14,22 @@ const userSchema = new mongoose.Schema({
         unique: true,
         required: [true, "Please Enter your name"],
     },
-    about: {
-        type: String,
-        default: "Always Up for a Good Conversation!"
-    },
-    contacts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
     password: {
         type: String,
         required: [true, "Please Enter your Password"],
         minLength: [8, "password should have 8 character minimum"],
         select: false,
     },
+    profilePic: {
+        type: String,
+        default: "",
+    },
+    contacts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+    about: {
+        type: String,
+        default: "Always Up for a Good Conversation!"
+    },
+    lastseen: { type: Date, default: Date.now }
 });
 
 // JWT TOKEN

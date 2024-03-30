@@ -45,7 +45,7 @@ const SearchInput = () => {
 				<input
 					type="text"
 					placeholder={`${isFocused ? `` : "Search or start new chat"}`}
-					className="outline-none bg-primary text-xs h-8 rounded-md"
+					className="outline-none bg-primary text-xs h-10 rounded-md"
 					value={search}
 					onFocus={handleFocus}
 					onBlur={handleBlur}

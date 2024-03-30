@@ -14,7 +14,7 @@ function ConatctInfo({ setIsContactInfoHidden }) {
             <div>
                 <div className="avatar w-full">
                     <div className="w-40 mx-auto my-10 rounded-full">
-                        <img src="https://img.freepik.com/premium-photo/portrait-cheerful-little-boy-with-curly-hair-tshirt-smiling-funny-carefree_2221-7628.jpg" />
+                        <img src={chatWith.profilePic} />
                     </div>
                 </div>
                 <div className="flex flex-col gap-1 border-b-8 pb-5 border-secondary items-center">

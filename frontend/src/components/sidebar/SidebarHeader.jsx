@@ -8,7 +8,10 @@ function SidebarHeader({ setIsProfileSelected }) {
     return (
         <>
             <div className="flex justify-between items-center p-2 h-14 bg-primary">
-                <div onClick={() => setIsProfileSelected(true)} className="w-10 rounded-full cursor-pointer bg-slate-900 aspect-square">
+                <div onClick={() => setIsProfileSelected(true)} className="avatar">
+                    <div className="w-10 rounded-full">
+                        <img src={user.profilePic} />
+                    </div>
                 </div>
                 <div className="flex gap-2 items-center" >
                     <IoLockClosed className="cursor-pointer" />

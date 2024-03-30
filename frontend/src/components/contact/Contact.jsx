@@ -6,7 +6,7 @@ function Contact({ contact, handleChatWith, isSelected, isOnline }) {
         >
             <div className={`avatar ${isOnline ? `online` : ``}`}>
                 <div className="w-12 rounded-full">
-                    <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" alt="User Avatar" />
+                    <img src={contact.profilePic} alt="User Avatar" />
                 </div>
             </div>
             <div className="w-full">

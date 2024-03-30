@@ -4,6 +4,7 @@ import { useSocketContext } from "../../context/socketContext";
 import { IoMdArrowBack } from "react-icons/io";
 import { useDispatch } from "react-redux";
 import { setChatWith } from "../../slices/chatSlice";
+import { formatLastSeen } from "../../utils/getTime";
 
 function ChatSectionHeader({ chatWith, setIsContactInfoHidden }) {
 
@@ -11,6 +12,7 @@ function ChatSectionHeader({ chatWith, setIsContactInfoHidden }) {
 
     const { onlineUsers } = useSocketContext();
     const isOnline = onlineUsers.includes(chatWith._id);
+    const lastseen = formatLastSeen(chatWith.lastseen);
 
     const handleBack = () => {
         dispatch(setChatWith(null));
@@ -24,7 +26,7 @@ function ChatSectionHeader({ chatWith, setIsContactInfoHidden }) {
                     <div onClick={() => setIsContactInfoHidden(false)} className="flex cursor-pointer justify-center items-center gap-4">
                         <div className="avatar">
                             <div className="w-10 rounded-full">
-                                <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                                <img src={chatWith.profilePic} />
                             </div>
                         </div>
                         <div>
@@ -32,7 +34,7 @@ function ChatSectionHeader({ chatWith, setIsContactInfoHidden }) {
                                 {chatWith.name}
                             </p>
                             <p className="text-xs">
-                                {isOnline ? `Online` : `Offline`}
+                                {isOnline ? `Online` : `Last seen at ${lastseen}`}
                             </p>
                         </div>
                     </div>

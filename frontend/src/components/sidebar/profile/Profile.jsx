@@ -6,7 +6,7 @@ import { updateProfile } from '../../../slices/userSlice';
 
 function Profile({ setIsProfileSelected }) {
     const dispatch = useDispatch();
-    const { name, username, about } = useSelector(state => state.user.user);
+    const { name, username, about, profilePic } = useSelector(state => state.user.user);
     const [profileData, setProfileData] = useState({ name, username, about });
 
     const handleChange = (fieldName, fieldValue) => {
@@ -31,7 +31,7 @@ function Profile({ setIsProfileSelected }) {
             <div>
                 <div className="avatar w-full">
                     <div className="w-40 mx-auto my-10 rounded-full">
-                        <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" alt="user avatar" />
+                        <img src={profilePic} alt="user avatar" />
                     </div>
                 </div>
                 <div className="flex flex-col gap-4 p-5">

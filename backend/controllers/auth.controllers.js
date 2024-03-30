@@ -20,11 +20,13 @@ export const registerUser = catchAsyncErrors(async (req, res, next) => {
 
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
+    const profilePic = `https://avatar.iran.liara.run/public/boy?username=${username}`;
 
     const newUser = new User({
         name,
         username,
-        password: hashedPassword
+        password: hashedPassword,
+        profilePic
     });
 
     await newUser.save();
@@ -35,19 +37,15 @@ export const loginUser = catchAsyncErrors(async (req, res, next) => {
     const { username, password } = req.body;
     console.log(req.body);
 
-    // checking if user has given password and email both
     if (!username || !password) {
         return next(new ErrorHandler("Please enter username and password", 400));
     }
 
-    // all the details of the current login user is saved in user
     const user = await User.findOne({ username }).select("+password");
     if (!user) {
         return next(new ErrorHandler('Invalid username and password', 401));
     }
-    // if (!user.verified) {
-    //     return next(new ErrorHandler('Please verify your account before logging in.', 401));
-    // }
+
     const isPasswordMatched = await user.comparePassword(password);
 
     if (!isPasswordMatched) {

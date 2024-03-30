@@ -32,8 +32,14 @@ io.on("connection", (socket) => {
     }
 
     io.emit("getOnlineUsers", Object.keys(userSocketMap));
-    socket.on("disconnect", () => {
+    socket.on("disconnect", async () => {
         console.log("user disconnected", socket.id);
+        try {
+            await User.findByIdAndUpdate(userId, { lastseen: new Date() });
+            console.log("User's last seen updated successfully.");
+        } catch (error) {
+            console.error("Error updating user's last seen:", error);
+        }
         delete userSocketMap[userId];
         io.emit("getOnlineUsers", Object.keys(userSocketMap));
     });
