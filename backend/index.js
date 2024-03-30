@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import connectDB from "./database/db.js";
 import ErrorMiddleware from "./middleware/error.js";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 
 // Routes
 import authRoutes from "./routes/auth.routes.js";
@@ -15,6 +16,19 @@ const PORT = process.env.PORT || 5000;
 dotenv.config();
 app.use(express.json());
 app.use(cookieParser());
+app.use(cors({
+    origin: (origin, callback) => {
+        const allowedOrigins = [process.env.LOCAL_URL, process.env.HOSTED_URL];
+        const isAllowedOrigin = allowedOrigins.includes(origin) || !origin;
+
+        if (isAllowedOrigin) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    credentials: true,
+}));
 
 app.get("/", (req, res) => {
     res.json({ message: "Welcome to BuzzHive" });

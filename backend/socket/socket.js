@@ -4,9 +4,11 @@ import express from "express";
 
 const app = express();
 const server = http.createServer(app);
+const hostedUrl = process.env.NODE_ENV === 'production' ? process.env.HOSTED_URL : process.env.LOCAL_URL;
+
 const io = new Server(server, {
     cors: {
-        origin: ["http://localhost:3000"],
+        origin: [hostedUrl],
         methods: ["GET", "POST"],
     },
 });
