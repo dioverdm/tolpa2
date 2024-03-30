@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
     origin: (origin, callback) => {
-        const allowedOrigins = [process.env.LOCAL_URL, process.env.HOSTED_URL];
+        const allowedOrigins = [`${process.env.LOCAL_URL}`, `${process.env.HOSTED_URL}`];
         const isAllowedOrigin = allowedOrigins.includes(origin) || !origin;
 
         if (isAllowedOrigin) {

@@ -1,14 +1,16 @@
 import { Server } from "socket.io";
 import http from "http";
 import express from "express";
+import dotenv from "dotenv";
 
 const app = express();
+dotenv.config();
 const server = http.createServer(app);
 const hostedUrl = process.env.NODE_ENV === 'production' ? process.env.HOSTED_URL : process.env.LOCAL_URL;
 
 const io = new Server(server, {
     cors: {
-        origin: [hostedUrl],
+        origin: [`${hostedUrl}`],
         methods: ["GET", "POST"],
     },
 });
