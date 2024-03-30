@@ -7,11 +7,11 @@ import Home from "./components/home/Home";
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<ProtectedRoute Component={Home} />} >
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
-      </Route>
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/" element={<ProtectedRoute Component={Home} />} />
     </Routes>
+
   );
 }
 

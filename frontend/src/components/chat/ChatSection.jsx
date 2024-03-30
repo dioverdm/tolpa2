@@ -17,12 +17,12 @@ function ChatSection({ setIsContactInfoHidden }) {
     }, [chatWith]);
 
     useEffect(() => {
-        socket.on("newMessage", (newMessage) => {
+        socket?.on("newMessage", (newMessage) => {
             dispatch(addMessage(newMessage));
         });
 
         return () => {
-            socket.off("newMessage");
+            socket?.off("newMessage");
         };
     }, [socket, dispatch]);
 

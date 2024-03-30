@@ -28,7 +28,7 @@ function Login() {
         if (isAuthenticated) {
             navigate("/")
         }
-    })
+    }, [isAuthenticated, navigate])
 
     return (
         <div className="h-screen w-screen flex justify-center gap-2 flex-col items-center">
