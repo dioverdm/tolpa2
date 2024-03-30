@@ -16,7 +16,7 @@ export const SocketContextProvider = ({ children }) => {
     useEffect(() => {
         if (user) {
             const socketUrl = process.env.NODE_ENV === 'production'
-                ? "https://your-production-socket-url.com" // Production URL
+                ? "https://buzzhive-4zkh.onrender.com" // Production URL
                 : "http://localhost:5000"; // Development URL
 
             const socket = io(socketUrl, {
