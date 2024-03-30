@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "../store/axiosConfig";
+import axiosInstance from "../store/axiosConfig";
 
 
 const initialState = {
@@ -103,7 +103,7 @@ const userSlice = createSlice({
 
 export const registerUser = createAsyncThunk("user/register", async (userData) => {
     try {
-        const response = await axios.post("/api/auth/register", userData);
+        const response = await axiosInstance.post("/api/auth/register", userData);
         return response.data.user;
     } catch (error) {
         throw error.response.data;
@@ -112,7 +112,7 @@ export const registerUser = createAsyncThunk("user/register", async (userData) =
 
 export const loginUser = createAsyncThunk("user/login", async (userData) => {
     try {
-        const response = await axios.post("/api/auth/login", userData);
+        const response = await axiosInstance.post("/api/auth/login", userData);
         return response.data.user;
     } catch (error) {
         throw error.response.data;
@@ -121,7 +121,7 @@ export const loginUser = createAsyncThunk("user/login", async (userData) => {
 
 export const logoutUser = createAsyncThunk("user/logout", async () => {
     try {
-        const response = await axios.post("/api/auth/logout");
+        const response = await axiosInstance.post("/api/auth/logout");
         return response.data.user;
     } catch (error) {
         throw error.response.data;
@@ -130,7 +130,7 @@ export const logoutUser = createAsyncThunk("user/logout", async () => {
 
 export const updateProfile = createAsyncThunk("user/updateprofile", async (userData) => {
     try {
-        const response = await axios.post("/api/user/update/profile", userData);
+        const response = await axiosInstance.post("/api/user/update/profile", userData);
         return response.data.user;
     } catch (error) {
         throw error.response.data;
@@ -139,7 +139,7 @@ export const updateProfile = createAsyncThunk("user/updateprofile", async (userD
 
 export const loadUser = createAsyncThunk("user/me", async () => {
     try {
-        const response = await axios.get("/api/user/me");
+        const response = await axiosInstance.get("/api/user/me");
         return response.data;
     } catch (error) {
         throw error.response.data;
@@ -148,7 +148,7 @@ export const loadUser = createAsyncThunk("user/me", async () => {
 
 export const getContactList = createAsyncThunk("user/constList", async () => {
     try {
-        const response = await axios.get("/api/user/contacts");
+        const response = await axiosInstance.get("/api/user/contacts");
         return response.data;
     } catch (error) {
         throw error.response.data;
@@ -157,7 +157,7 @@ export const getContactList = createAsyncThunk("user/constList", async () => {
 
 export const searchUser = createAsyncThunk("user/search", async (query) => {
     try {
-        const response = await axios.get(`/api/user/search?username=${query}`)
+        const response = await axiosInstance.get(`/api/user/search?username=${query}`)
         return response.data;
     } catch (error) {
         throw error.response.data;

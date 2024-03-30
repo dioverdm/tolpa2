@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "../store/axiosConfig";
+import axiosInstance from "../store/axiosConfig";
 
 const initialState = {
     chatWith: null,
@@ -51,7 +51,7 @@ export const sendMessage = createAsyncThunk(
     'chat/sendMessage',
     async ({ message, id }, { dispatch }) => {
         try {
-            const response = await axios.post(`/api/message/send/${id}`, { message });
+            const response = await axiosInstance.post(`/api/message/send/${id}`, { message });
             dispatch(getConversation(id));
             return response.data;
         } catch (error) {
@@ -64,7 +64,7 @@ export const getConversation = createAsyncThunk(
     'chat/getConversation',
     async (id) => {
         try {
-            const response = await axios.get(`/api/message/${id}`);
+            const response = await axiosInstance.get(`/api/message/${id}`);
             return response.data;
         } catch (error) {
             throw error.response.data;

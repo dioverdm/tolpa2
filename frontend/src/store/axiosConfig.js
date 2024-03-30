@@ -5,9 +5,9 @@ const hostedURL = 'https://buzzhive-4zkh.onrender.com';
 
 const baseURL = process.env.NODE_ENV === 'development' ? localURL : hostedURL;
 
-const axios = axios.create({
+const axiosInstance = axios.create({
     baseURL,
     withCredentials: true,
 });
 
-export default axios;
+export default axiosInstance;
