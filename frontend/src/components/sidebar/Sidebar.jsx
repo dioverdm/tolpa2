@@ -7,7 +7,7 @@ import Profile from './profile/Profile';
 function Sidebar() {
     const [isProfileSelected, setIsProfileSelected] = useState(false);
     return (
-        <div className='border-r border-border bg-secondary h-screen flex flex-col'>
+        <div className='border-r w-full border-border bg-secondary h-screen flex flex-col'>
             {isProfileSelected ?
                 <Profile setIsProfileSelected={setIsProfileSelected} /> :
                 <div className=' h-full flex flex-col'>

@@ -15,6 +15,9 @@ export default {
         'border': '#0B141A',
         'select': '#2A3942'
       },
+      screens: {
+        'xs': '480px',
+      },
     },
   },
   plugins: [require("daisyui")],

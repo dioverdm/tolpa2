@@ -2,7 +2,7 @@ function Contact({ contact, handleChatWith, isSelected, isOnline }) {
     return (
         <div
             onClick={() => handleChatWith(contact)}
-            className={`py-4 px-2 border-b flex gap-5 items-center border-border cursor-pointer ${isSelected ? 'bg-select' : ''}`}
+            className={`py-4 w-full px-2 border-b flex gap-5 items-center border-border cursor-pointer ${isSelected ? 'bg-select' : ''}`}
         >
             <div className={`avatar ${isOnline ? `online` : ``}`}>
                 <div className="w-12 rounded-full">

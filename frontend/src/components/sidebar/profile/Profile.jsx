@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaArrowLeftLong } from 'react-icons/fa6';
+import { IoMdArrowBack } from "react-icons/io";
 import { useDispatch, useSelector } from 'react-redux';
 import EditableField from './EditableField';
 import { updateProfile } from '../../../slices/userSlice';
@@ -22,10 +22,10 @@ function Profile({ setIsProfileSelected }) {
 
     return (
         <>
-            <div className="h-28 flex pl-4 pb-5 text-on-primary bg-primary items-end">
+            <div className="h-14 flex pl-4 text-on-primary bg-primary items-center">
                 <div className="flex gap-4 items-center">
-                    <FaArrowLeftLong onClick={() => setIsProfileSelected(false)} className="text-2xl cursor-pointer" />
-                    <p className="text-xl">Profile</p>
+                    <IoMdArrowBack onClick={() => setIsProfileSelected(false)} className="text-xl cursor-pointer" />
+                    <p>Profile</p>
                 </div>
             </div>
             <div>

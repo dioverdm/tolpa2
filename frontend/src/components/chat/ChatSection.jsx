@@ -28,7 +28,7 @@ function ChatSection({ setIsContactInfoHidden }) {
 
     return (
         <>
-            {chatWith ? <div div className="flex h-full flex-col">
+            {chatWith ? <div div className="flex h-full w-full flex-col">
                 <div>
                     <ChatSectionHeader setIsContactInfoHidden={setIsContactInfoHidden} chatWith={chatWith} />
                 </div>

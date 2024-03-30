@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { IoSearchSharp } from "react-icons/io5";
-import { IoMdArrowRoundBack } from "react-icons/io";
+import { IoMdArrowBack } from "react-icons/io";
 import { useDispatch } from "react-redux";
 import { searchUser } from "../../slices/userSlice";
 import { setSearchInput } from "../../slices/utilSlice";
@@ -37,7 +37,7 @@ const SearchInput = () => {
 			<label className="flex items-center w-full rounded-sm bg-primary px-2">
 				<div className={`icon-container ${isSearchIconRotated ? 'rotate' : ''}`}>
 					{isFocused ? (
-						< IoMdArrowRoundBack className="w-4 text-notify outline-none mr-1" />
+						< IoMdArrowBack className="w-4 text-notify outline-none mr-1" />
 					) : (
 						<IoSearchSharp className="w-4 outline-none mr-1" />
 					)}
