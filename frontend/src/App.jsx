@@ -1,8 +1,9 @@
-import { Route, Routes } from "react-router-dom";
-import Login from "./components/auth/Login";
-import Register from "./components/auth/Register";
-import ProtectedRoute from "./components/route/ProtectedRoute";
-import Home from "./components/home/Home";
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Login from './components/auth/Login';
+import Register from './components/auth/Register';
+import ProtectedRoute from './components/route/ProtectedRoute';
+import Home from './components/home/Home';
 
 function App() {
   return (
@@ -11,7 +12,6 @@ function App() {
       <Route path="/register" element={<Register />} />
       <Route path="/" element={<ProtectedRoute Component={Home} />} />
     </Routes>
-
   );
 }
 
