@@ -1,4 +1,8 @@
-function Contact({ contact, handleChatWith, isSelected, isOnline }) {
+import { formatTime, truncateText } from "../../utils/getTime";
+
+
+function Contact({ contact, handleChatWith, isSelected, isOnline, lastMessage }) {
+    const messageTime = formatTime(lastMessage?.createdAt);
     return (
         <div
             onClick={() => handleChatWith(contact)}
@@ -12,10 +16,11 @@ function Contact({ contact, handleChatWith, isSelected, isOnline }) {
             <div className="w-full">
                 <div className="flex justify-between items-center w-full">
                     <p className="text-white font-bold">{contact.name}</p>
-                    <p className="text-[10px]">Yesterday</p>
+                    <p className="text-[10px]">{messageTime}</p>
                 </div>
-                <div>
-                    <p className="text-sm">Hello, how are you?</p>
+
+                <div className="overflow-hidden">
+                    <p className="text-sm">{truncateText(lastMessage?.message, 25)}</p>
                 </div>
             </div>
         </div>

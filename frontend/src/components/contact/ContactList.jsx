@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getContactList } from '../../slices/userSlice';
-import { getConversation, setChatWith } from "../../slices/chatSlice"
+import { getConversation, getLastMessage, setChatWith } from "../../slices/chatSlice"
 import Contact from './Contact';
 import { useSocketContext } from '../../context/socketContext';
 
 function ContactList() {
     const dispatch = useDispatch();
     const { contactList, searchedUser } = useSelector((state) => state.user);
+    const lastMessages = useSelector((state) => state.chat.lastMessages);
     const { searchInput } = useSelector((state) => state.util);
     const { chatWith } = useSelector(state => state.chat);
     const { onlineUsers } = useSocketContext();
 
     const handleChatWith = (contact) => {
-        // setSelectedContactId(contact._id);
         dispatch(setChatWith(contact));
         dispatch(getConversation(contact._id));
     }
@@ -21,6 +21,12 @@ function ContactList() {
     useEffect(() => {
         dispatch(getContactList());
     }, [dispatch]);
+
+    useEffect(() => {
+        contactList.forEach(contact => {
+            dispatch(getLastMessage(contact._id));
+        });
+    }, [dispatch, contactList]);
 
     return (
         <>
@@ -49,6 +55,7 @@ function ContactList() {
                                 isSelected={contact._id === chatWith?._id}
                                 handleChatWith={handleChatWith}
                                 isOnline={onlineUsers.includes(contact._id)}
+                                lastMessage={lastMessages[contact._id]}
                             />
                         ))
                     )

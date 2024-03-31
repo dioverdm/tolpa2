@@ -4,6 +4,7 @@ import axiosInstance from "../store/axiosConfig";
 const initialState = {
     chatWith: null,
     conversation: [],
+    lastMessages: {},
     loading: false,
     error: null,
 };
@@ -43,6 +44,10 @@ const chatSlice = createSlice({
             .addCase(getConversation.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
+            })
+            .addCase(getLastMessage.fulfilled, (state, action) => {
+                const { contactId, lastMessage } = action.payload;
+                state.lastMessages[contactId] = lastMessage;
             });
     },
 });
@@ -69,6 +74,14 @@ export const getConversation = createAsyncThunk(
         } catch (error) {
             throw error.response.data;
         }
+    }
+);
+
+export const getLastMessage = createAsyncThunk(
+    'chat/getLastMessage',
+    async (contactId) => {
+        const response = await axiosInstance.get(`/api/message/${contactId}/lastmessage`);
+        return { contactId, lastMessage: response.data };
     }
 );
 

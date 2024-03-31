@@ -4,7 +4,7 @@ import { useSocketContext } from "../../context/socketContext";
 import { IoMdArrowBack } from "react-icons/io";
 import { useDispatch } from "react-redux";
 import { setChatWith } from "../../slices/chatSlice";
-import { formatLastSeen } from "../../utils/getTime";
+import { formatTime } from "../../utils/getTime";
 
 function ChatSectionHeader({ chatWith, setIsContactInfoHidden }) {
 
@@ -12,7 +12,7 @@ function ChatSectionHeader({ chatWith, setIsContactInfoHidden }) {
 
     const { onlineUsers } = useSocketContext();
     const isOnline = onlineUsers.includes(chatWith._id);
-    const lastseen = formatLastSeen(chatWith.lastseen);
+    const lastseen = formatTime(chatWith.lastseen);
 
     const handleBack = () => {
         dispatch(setChatWith(null));

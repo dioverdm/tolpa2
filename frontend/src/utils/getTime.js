@@ -1,4 +1,4 @@
-export const formatLastSeen = (lastSeen) => {
+export const formatTime = (lastSeen) => {
     let lastSeenDate = new Date(lastSeen);
     let now = new Date();
 
@@ -32,3 +32,10 @@ export const formatLastSeen = (lastSeen) => {
         }
     }
 }
+
+export const truncateText = (text = "", maxLength) => {
+    if (text.length <= maxLength) {
+        return text;
+    }
+    return text.substring(0, maxLength) + '...';
+};
