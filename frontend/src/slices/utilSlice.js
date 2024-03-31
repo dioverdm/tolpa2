@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     searchInput: "",
+    selectedContact: null,
 };
 
 const utilSlice = createSlice({
@@ -10,10 +11,13 @@ const utilSlice = createSlice({
     reducers: {
         setSearchInput: (state, action) => {
             state.searchInput = action.payload;
+        },
+        setSelectedContact: (state, action) => {
+            state.selectedContact = action.payload;
         }
     },
 });
 
-export const { setSearchInput } = utilSlice.actions;
+export const { setSearchInput,setSelectedContact } = utilSlice.actions;
 
 export default utilSlice.reducer;

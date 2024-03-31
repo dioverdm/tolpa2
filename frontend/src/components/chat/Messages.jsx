@@ -8,7 +8,8 @@ function Messages() {
     const lastMessageRef = useRef(null);
 
 
-
+    console.log(conversation);
+    
     useEffect(() => {
         if (lastMessageRef.current) {
             lastMessageRef.current.scrollIntoView({ behavior: "smooth" });

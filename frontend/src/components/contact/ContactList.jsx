@@ -9,11 +9,11 @@ function ContactList() {
     const dispatch = useDispatch();
     const { contactList, searchedUser } = useSelector((state) => state.user);
     const { searchInput } = useSelector((state) => state.util);
-    const [selectedContactId, setSelectedContactId] = useState(null);
+    const { chatWith } = useSelector(state => state.chat);
     const { onlineUsers } = useSocketContext();
 
     const handleChatWith = (contact) => {
-        setSelectedContactId(contact._id);
+        // setSelectedContactId(contact._id);
         dispatch(setChatWith(contact));
         dispatch(getConversation(contact._id));
     }
@@ -46,7 +46,7 @@ function ContactList() {
                             <Contact
                                 key={contact._id}
                                 contact={contact}
-                                isSelected={contact._id === selectedContactId}
+                                isSelected={contact._id === chatWith?._id}
                                 handleChatWith={handleChatWith}
                                 isOnline={onlineUsers.includes(contact._id)}
                             />

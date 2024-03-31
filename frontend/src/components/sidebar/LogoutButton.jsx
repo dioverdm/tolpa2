@@ -1,4 +1,3 @@
-import { BiLogOut } from "react-icons/bi";
 import { logoutUser } from "../../slices/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -11,10 +10,10 @@ const LogoutButton = () => {
 	}
 	return (
 		<div className='mt-auto'>
-			{true ? (
-				<p onClick={handelLogout}>Logout</p>
-			) : (
+			{loading ? (
 				<span className='loading loading-spinner'></span>
+			) : (
+				<p onClick={handelLogout}>Logout</p>
 			)}
 		</div>
 	);

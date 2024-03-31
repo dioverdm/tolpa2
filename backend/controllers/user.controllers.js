@@ -29,6 +29,7 @@ export const getContactList = catchAsyncErrors(async (req, res, next) => {
             username: contact.username,
             name: contact.name,
             profilePic: contact.profilePic,
+            
             about: contact.about,
             lastseen: contact.lastseen,
         };

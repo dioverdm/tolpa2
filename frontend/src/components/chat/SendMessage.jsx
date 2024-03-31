@@ -34,8 +34,13 @@ function SendMessage() {
                     />
                 </form>
                 <div className="w-10">
-                    {message === "" ? <FaMicrophone className="text-xl text-on-primary" /> : <IoMdSend className="text-3xl text-on-primary" />}
+                    {message === "" ? (
+                        <FaMicrophone className="text-xl text-on-primary" />
+                    ) : (
+                        <IoMdSend onClick={handelSubmit} className="text-3xl cursor-pointer text-on-primary" />
+                    )}
                 </div>
+
             </div>
         </>
     )
