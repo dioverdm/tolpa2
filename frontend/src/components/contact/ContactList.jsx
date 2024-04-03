@@ -4,6 +4,7 @@ import { getContactList } from '../../slices/userSlice';
 import { getConversation, getLastMessage, setChatWith } from "../../slices/chatSlice"
 import Contact from './Contact';
 import { useSocketContext } from '../../context/socketContext';
+import ContactSkeleton from '../skeleton/ContactSkeleton';
 
 function ContactList() {
     const dispatch = useDispatch();
@@ -48,16 +49,22 @@ function ContactList() {
                             </div>
                         )
                     ) : (
-                        contactList.map((contact) => (
-                            <Contact
-                                key={contact._id}
-                                contact={contact}
-                                isSelected={contact._id === chatWith?._id}
-                                handleChatWith={handleChatWith}
-                                isOnline={onlineUsers.includes(contact._id)}
-                                lastMessage={lastMessages[contact._id]}
-                            />
-                        ))
+                        contactList.length !== 0 ?
+                            contactList.map((contact) => (
+                                <Contact
+                                    key={contact._id}
+                                    contact={contact}
+                                    isSelected={contact._id === chatWith?._id}
+                                    handleChatWith={handleChatWith}
+                                    isOnline={onlineUsers.includes(contact._id)}
+                                    lastMessage={lastMessages[contact._id]}
+                                />
+                            ))
+                            :
+                            <div>
+                                <ContactSkeleton />
+                                <ContactSkeleton />
+                            </div>
                     )
                 }
             </div>
