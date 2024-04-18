@@ -15,7 +15,7 @@ function Contact({ contact, handleChatWith, isSelected, isOnline, lastMessage })
             </div>
             <div className="w-full">
                 <div className="flex justify-between items-center w-full">
-                    <p className="text-white font-bold">{contact.name}</p>
+                    <p className="text-white font-bold">{truncateText(contact?.name, 20)}</p>
                     <p className="text-[10px]">{messageTime}</p>
                 </div>
 

@@ -40,8 +40,8 @@ function ChatSectionHeader({ chatWith, setIsContactInfoHidden }) {
                     </div>
                 </div>
                 <div className="flex gap-4 items-center">
-                    <IoSearchSharp className="text-xl text-on-primary" />
-                    <BsThreeDotsVertical className="text-xl text-on-primary" />
+                    <IoSearchSharp className="text-xl text-on-primary cursor-not-allowed" />
+                    <BsThreeDotsVertical className="text-xl text-on-primary cursor-not-allowed" />
                 </div>
 
             </div>

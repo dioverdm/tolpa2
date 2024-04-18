@@ -8,7 +8,7 @@ import ContactSkeleton from '../skeleton/ContactSkeleton';
 
 function ContactList() {
     const dispatch = useDispatch();
-    const { contactList, searchedUser } = useSelector((state) => state.user);
+    const { contactList, searchedUser, loading } = useSelector((state) => state.user);
     const lastMessages = useSelector((state) => state.chat.lastMessages);
     const { searchInput } = useSelector((state) => state.util);
     const { chatWith } = useSelector(state => state.chat);
@@ -33,23 +33,13 @@ function ContactList() {
         <>
             <div className='py-2'>
                 {
-                    (searchInput !== "") ? (
-                        searchedUser.length !== 0 ? (
-                            searchedUser.map((contact) => (
-                                <Contact
-                                    key={contact._id}
-                                    contact={contact}
-                                    isSelected={contact._id === selectedContactId}
-                                    handleChatWith={handleChatWith}
-                                />
-                            ))
-                        ) : (
-                            <div className='flex justify-center'>
-                                <p>NO USER FOUND</p>
-                            </div>
-                        )
+                    loading ? (
+                        <div>
+                            <ContactSkeleton />
+                            <ContactSkeleton />
+                        </div>
                     ) : (
-                        contactList.length !== 0 ?
+                        contactList.length !== 0 && !searchInput ? (
                             contactList.map((contact) => (
                                 <Contact
                                     key={contact._id}
@@ -60,13 +50,31 @@ function ContactList() {
                                     lastMessage={lastMessages[contact._id]}
                                 />
                             ))
-                            :
-                            <div>
-                                <ContactSkeleton />
-                                <ContactSkeleton />
-                            </div>
+                        ) : (
+                            searchInput !== "" ? (
+                                searchedUser.length !== 0 ? (
+                                    searchedUser.map((contact) => (
+                                        <Contact
+                                            key={contact._id}
+                                            contact={contact}
+                                            isSelected={contact._id === chatWith?._id}
+                                            handleChatWith={handleChatWith}
+                                        />
+                                    ))
+                                ) : (
+                                    <div className='flex justify-center'>
+                                        <p>NO USER FOUND</p>
+                                    </div>
+                                )
+                            ) : (
+                                <div className='flex justify-center'>
+                                    <p>No chat available</p>
+                                </div>
+                            )
+                        )
                     )
                 }
+
             </div>
 
         </>

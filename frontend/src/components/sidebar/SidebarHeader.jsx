@@ -15,7 +15,7 @@ function SidebarHeader({ setIsProfileSelected, setIsSettingsSelected }) {
                     </div>
                 </div>
                 <div className="flex gap-2 items-center" >
-                    <IoLockClosed className="cursor-pointer" />
+                    <IoLockClosed className="cursor-not-allowed" />
 
                     <details className="dropdown dropdown-end">
                         <summary className="m-1 btn btn-ghost "><BsThreeDotsVertical className="cursor-pointer" /></summary>

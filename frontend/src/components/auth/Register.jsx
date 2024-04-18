@@ -37,7 +37,7 @@ function Register() {
             <Loader />
             :
             <div className="h-screen w-screen flex justify-center gap-2 flex-col items-center">
-                <h1 className="text-3xl font-bold">Welcome to BuzzHive</h1>
+                <h1 className="text-3xl font-bold"><img className="w-20" src="/logo.png" />Welcome to BuzzHive</h1>
                 <form onSubmit={handelSubmit} className="flex flex-col gap-2 p-10 rounded bg-white bg-opacity-10 ">
                     <label className="input input-bordered flex items-center gap-2">
                         <input

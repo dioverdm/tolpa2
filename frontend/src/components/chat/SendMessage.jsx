@@ -22,8 +22,8 @@ function SendMessage() {
     return (
         <>
             <div className="bg-primary  gap-4 flex items-center p-3">
-                <BsEmojiSmile className="text-xl text-on-primary" />
-                <IoMdAdd className="text-xl text-on-primary" />
+                <BsEmojiSmile className="text-xl cursor-not-allowed text-on-primary" />
+                <IoMdAdd className="text-xl cursor-not-allowed text-on-primary" />
                 <form className="w-full" onSubmit={handelSubmit}>
                     <input
                         type="text"
@@ -35,7 +35,7 @@ function SendMessage() {
                 </form>
                 <div className="w-10">
                     {message === "" ? (
-                        <FaMicrophone className="text-xl text-on-primary" />
+                        <FaMicrophone className="text-xl cursor-not-allowed text-on-primary" />
                     ) : (
                         <IoMdSend onClick={handelSubmit} className="text-3xl cursor-pointer text-on-primary" />
                     )}
