@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const localURL = 'http://localhost:5000';
-const hostedURL = 'https://buzzhive-4zkh.onrender.com';
+const hostedURL = 'https://tolpa2.vercel.app';
 
 const baseURL = process.env.NODE_ENV === 'development' ? localURL : hostedURL;
 
